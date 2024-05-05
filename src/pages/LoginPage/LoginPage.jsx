@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import styles from "./LoginPage.module.scss";
 import Main from "@/components/Main/Main";
 import AuthInput from "@/components/Auth/AuthInput";
@@ -33,7 +34,24 @@ const LoginPage = () => {
         const { token } = response.data;
         // 將 token 存入 localStorage
         localStorage.setItem("token", token);
+        // 登入成功訊息
+        Swal.fire({
+          position: "top",
+          title: "登入成功！",
+          timer: 1500,
+          icon: "success",
+          showConfirmButton: false,
+        });
+        return;
       }
+      // 登入失敗訊息
+      Swal.fire({
+        position: "top",
+        title: "登入失敗！",
+        timer: 1500,
+        icon: "error",
+        showConfirmButton: false,
+      });
     } catch (error) {
       console.error("登入失敗:", error);
     }
